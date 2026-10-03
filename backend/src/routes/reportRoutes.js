@@ -1,0 +1,11 @@
+const router = require('express').Router();
+const c = require('../controllers/reportController');
+const v = require('../validators/reportValidators');
+const validate = require('../middleware/validate');
+const { protect } = require('../middleware/authMiddleware');
+const { adminOnly } = require('../middleware/roleMiddleware');
+router.use(protect);
+router.get('/', c.list);
+router.post('/', v.create, validate, c.create);
+router.patch('/:id', adminOnly, v.update, validate, c.update);
+module.exports = router;

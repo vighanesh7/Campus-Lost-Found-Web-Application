@@ -1,0 +1,10 @@
+const router = require('express').Router();
+const { param } = require('express-validator');
+const c = require('../controllers/favoriteController');
+const validate = require('../middleware/validate');
+const { protect } = require('../middleware/authMiddleware');
+router.use(protect);
+router.get('/', c.list);
+router.post('/:itemId', param('itemId').isInt(), validate, c.add);
+router.delete('/:itemId', param('itemId').isInt(), validate, c.remove);
+module.exports = router;

@@ -1,0 +1,12 @@
+const router = require('express').Router();
+const { param } = require('express-validator');
+const c = require('../controllers/messageController');
+const v = require('../validators/messageValidators');
+const validate = require('../middleware/validate');
+const { protect } = require('../middleware/authMiddleware');
+router.use(protect);
+router.get('/', c.list);
+router.post('/', v.send, validate, c.send);
+router.put('/:id/read', param('id').isInt(), validate, c.markRead);
+router.get('/:conversationId', param('conversationId').isInt(), validate, c.get);
+module.exports = router;
