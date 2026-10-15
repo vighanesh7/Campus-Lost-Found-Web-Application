@@ -1,5 +1,3 @@
--- Plain-SQL equivalent of the Sequelize migrations (for reference / phpMyAdmin import).
--- Preferred way: npm run migrate (inside backend). Do not run both on the same database.
 CREATE DATABASE IF NOT EXISTS campus_lost_found CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE campus_lost_found;
 
